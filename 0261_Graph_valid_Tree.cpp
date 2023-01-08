@@ -89,7 +89,13 @@ public:
 };
 
 /*
+Complexity Analysis
 
+Time complexity: Assuming N to be the total number of nodes (cities) and M to be the total number of edges (connections). 
+Sorting all the M connections will take O(M⋅log⁡M). Performing union find each time will take log⁡N (Iterated logarithm). 
+Hence for M edges, it's O(M⋅log⁡∗N)which is practically O(M) as the value of iterated logarithm, log⁡∗N never exceeds 5.
+
+Space complexity: O(N), space required by parents and weights.
 
 
 */
