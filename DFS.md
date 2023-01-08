@@ -10,6 +10,8 @@ def dfs(curr):
       
 0261. Graph Valid Tree
 
+https://leetcode.com/problems/connecting-cities-with-minimum-cost/solutions/983410/connecting-cities-with-minimum-cost/
+
 1. check for cycle
 2. fully connected
 Both can be done by DFS.
