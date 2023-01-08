@@ -68,11 +68,15 @@ public:
 };
   
 /** Vanilla Disjoint-set Union Find **/
+  
 class DisjointSet {
+  
 private:
+  
     vector<int> parents;
 
 public:
+  
     void Union(int a, int b) {
         int rootA = Find(a);
         int rootB = Find(b);
