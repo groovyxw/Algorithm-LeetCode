@@ -67,7 +67,94 @@ public:
     }
 };
   
+/** Vanilla Disjoint-set Union Find **/
+class DisjointSet {
+private:
+    vector<int> parents;
+
+public:
+    void Union(int a, int b) {
+        int rootA = Find(a);
+        int rootB = Find(b);
+        // If both a and b have same root, i.e. they both belong to the same set, hence we don't need to take union
+        if (rootA == rootB) return;
+        // Take union by assigning rootA as the parent of rootB
+        this->parents[rootB] = rootA;
+    }
+
+    int Find(int a) {
+        // Traverse all the way to the top (root) going through the parent nodes
+        while (a != this->parents[a]) {
+            a = this->parents[a];
+        }
+        return a;
+    }
+
+    bool isInSameGroup(int a, int b) {
+        // Return true if both a and b belong to the same set, otherwise return false
+        return Find(a) == Find(b);
+    }
+
+    DisjointSet(int N) {
+        this->parents.resize(N + 1);
+        // Set the initial parent node to itself
+        for (int i = 1; i <= N; ++i) {
+            this->parents[i] = i;
+        }
+    }
+};
   
+ int Find(int a) {
+    while (a != this->parents[a]) {
+        // Path compression
+        // a's grandparent is now a's parent
+        this->parents[a] = this->parents[parents[a]];
+        a = this->parents[a];
+    }
+    return a;
+}
+  
+class DisjointSet {
+private:
+
+    vector<int> parents;
+    vector<int> weights;
+
+public:
+
+    void Union(int a, int b) {
+        int rootA = Find(a);
+        int rootB = Find(b);
+        // If both a and b have same root, i.e. they both belong to the same set, hence we don't need to take union
+        if (rootA == rootB) return;
+
+        // Weighted union
+        if (this->weights[rootA] > this->weights[rootB]) {
+            // In case rootA is having more weight
+            // 1. Make rootA as the parent of rootB
+            // 2. Increment the weight of rootA by rootB's weight
+            this->parents[rootB] = rootA;
+            this->weights[rootA] += this->weights[rootB];
+        } else {
+            // Otherwise
+            // 1. Make rootB as the parent of rootA
+            // 2. Increment the weight of rootB by rootA's weight
+            this->parents[rootA] = rootB;
+            this->weights[rootB] += this->weights[rootA];
+        }
+    }
+
+    DisjointSet(int N) {
+        this->weights.resize(N + 1);
+        this->parents.resize(N + 1);
+        // 1. Set the initial weights to 1
+        // 2. Set the initial parent node to itself
+        for (int i = 1; i <= N; ++i) {
+            this->weights[i] = 1;
+            this->parents[i] = i;
+        }
+    }
+};
   
   // For a graph to be a tree:
 //      1. Graph must be fully connected. => Use UF to find it.
