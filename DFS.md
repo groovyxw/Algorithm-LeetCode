@@ -161,6 +161,13 @@ public:
         }
     }
 };
+
+  If we combine both Path compression and Weighted Union, it takes log⁡∗N\log^{\ast} Nlog 
+∗
+ N for the union and find operations in case of Disjoint-set union link. Here log⁡∗N\log^{\ast} Nlog 
+∗
+ N is an extremely slow-growing inverse Ackermann function a.k.a Iterated logarithm and practically does not exceed 5. Hence it can be treated as a constant for implementation purposes.
+  
   
   // For a graph to be a tree:
 //      1. Graph must be fully connected. => Use UF to find it.
