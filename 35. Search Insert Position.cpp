@@ -25,25 +25,52 @@
 class Solution {
 public:
     int searchInsert(vector<int>& nums, int target) {
+     
         int s = 0, e = nums.size() - 1;
-
-        while (s + 1 < e) {
-            int mid = s + (e - s)/2;
-            if (nums[mid] == target) {
-                return mid;
-            } else if (nums[mid] > target) {
-                e = mid - 1;
-            } else {
-                s = mid + 1;
-            }
-        }
         if (nums[s] >= target) {
             return s;
         }
         if (nums[e] < target) {
             return e + 1;
         }
+        
+        while (s + 1 < e) {
+            int mid = s + (e - s)/2;
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] > target) {
+                e = mid;
+            } else {
+                s = mid;
+            }
+        }
+        
         return e;
+     
+     
+     
+     
+//         int s = 0, e = nums.size() - 1;
+
+//         while (s + 1 < e) {
+//             int mid = s + (e - s)/2;
+//             if (nums[mid] == target) {
+//                 return mid;
+//             } else if (nums[mid] > target) {
+//                 e = mid - 1;
+//             } else {
+//                 s = mid + 1;
+//             }
+//         }
+//         if (nums[s] >= target) {
+//             return s;
+//         }
+//         if (nums[e] < target) {
+//             return e + 1;
+//         }
+//         return e;
+     
+     
         // int left = 0, right = nums.size() - 1;
         // while(left <= right) {
         //     int mid = left + (right - left)/2;
