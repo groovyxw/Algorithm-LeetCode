@@ -183,3 +183,27 @@ class Solution:
             if curr.right:
                 st.append(curr.right)
         return res[::-1]
+        
+                    
+// n-tree
+class Solution {
+public:
+    vector<int> preorder(Node* root) {
+        vector<int> res;
+        if (root == nullptr) {
+            return res;
+        }
+
+        stack<Node *> st;
+        st.emplace(root);
+        while(!st.empty()) {
+            Node * node = st.top();
+            st.pop();
+            res.emplace_back(node->val);
+            for (auto it = node->children.rbegin(); it != node->children.rend(); it++) {
+                st.emplace(*it);
+            }
+        }
+        return res;
+    }
+};
